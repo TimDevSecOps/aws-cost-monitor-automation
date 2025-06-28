@@ -1,3 +1,6 @@
+**/tfplay.binary
+**/log
+
 # Local .terraform directories
 .terraform/
 
