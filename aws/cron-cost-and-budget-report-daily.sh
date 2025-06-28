@@ -21,6 +21,6 @@ aws ce get-cost-and-usage \
 echo "==== Budget Summary ===="
 aws budgets describe-budget \
   --account-id $(aws sts get-caller-identity --query "Account" --output text) \
-  --budget-name "DailyCostBudget" \
-  --query 'Budget.BudgetLimit, Budget.BudgetName' \
+  --budget-name "TimDailyCostBudget" \
+  --query '{Limit: Budget.BudgetLimit, Name: Budget.BudgetName}' \
   --output table
