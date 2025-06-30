@@ -5,7 +5,7 @@
         "Path": "/",
         "RoleName": "demo-role-for-eb",
         "RoleId": "AROAZ656IMM6ZZ3QXHPBK",
-        "Arn": "arn:aws:iam::684909421373:role/demo-role-for-eb",
+        "Arn": "arn:aws:iam::xxxxxxxx:role/demo-role-for-eb",
         "CreateDate": "2025-06-29T16:29:23+00:00",
         "AssumeRolePolicyDocument": {
             "Version": "2012-10-17",
@@ -22,15 +22,15 @@
     }
 }
 Attach role to policy: demo-role-for-eb to AWSLambdaBasicExecutionRole
-Get role ARN: arn:aws:iam::684909421373:role/demo-role-for-eb
+Get role ARN: arn:aws:iam::xxxxxxxx:role/demo-role-for-eb
 ==== 2. Create lambda function: demoReceiveEBFunc
   adding: lambda_function.py (deflated 9%)
 Upload lambda func to AWS
 {
     "FunctionName": "demoReceiveEBFunc",
-    "FunctionArn": "arn:aws:lambda:us-east-1:684909421373:function:demoReceiveEBFunc",
+    "FunctionArn": "arn:aws:lambda:us-east-1:xxxxxxxx:function:demoReceiveEBFunc",
     "Runtime": "python3.12",
-    "Role": "arn:aws:iam::684909421373:role/demo-role-for-eb",
+    "Role": "arn:aws:iam::xxxxxxxx:role/demo-role-for-eb",
     "Handler": "lambda_function.lambda_handler",
     "CodeSize": 255,
     "Description": "",
@@ -65,24 +65,24 @@ Upload lambda func to AWS
         "LogGroup": "/aws/lambda/demoReceiveEBFunc"
     }
 }
-Get lambda func ARN: arn:aws:lambda:us-east-1:684909421373:function:demoReceiveEBFunc
+Get lambda func ARN: arn:aws:lambda:us-east-1:xxxxxxxx:function:demoReceiveEBFunc
 ==== 3. Create custom event bus: demo-event-bus
 {
-    "EventBusArn": "arn:aws:events:us-east-1:684909421373:event-bus/demo-event-bus"
+    "EventBusArn": "arn:aws:events:us-east-1:xxxxxxxx:event-bus/demo-event-bus"
 }
 put rule for custom event bus: rule {customEBRule}
 {
-    "RuleArn": "arn:aws:events:us-east-1:684909421373:rule/demo-event-bus/demo-event-rule"
+    "RuleArn": "arn:aws:events:us-east-1:xxxxxxxx:rule/demo-event-bus/demo-event-rule"
 }
-Get rule ARN: arn:aws:events:us-east-1:684909421373:rule/demo-event-bus/demo-event-rule
-put lambda function target for custom event bus: target arn:aws:lambda:us-east-1:684909421373:function:demoReceiveEBFunc
+Get rule ARN: arn:aws:events:us-east-1:xxxxxxxx:rule/demo-event-bus/demo-event-rule
+put lambda function target for custom event bus: target arn:aws:lambda:us-east-1:xxxxxxxx:function:demoReceiveEBFunc
 {
     "FailedEntryCount": 0,
     "FailedEntries": []
 }
 Add permission for lambda function
 {
-    "Statement": "{\"Sid\":\"EventBridgeInvokeLambda\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:684909421373:function:demoReceiveEBFunc\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:events:us-east-1:684909421373:rule/demo-event-bus/demo-event-rule\"}}}"
+    "Statement": "{\"Sid\":\"EventBridgeInvokeLambda\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:xxxxxxxx:function:demoReceiveEBFunc\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:events:us-east-1:xxxxxxxx:rule/demo-event-bus/demo-event-rule\"}}}"
 }
 ==== 4. send a test event
 {
@@ -109,7 +109,7 @@ logStream name: 2025/06/29/[$LATEST]48637956100f4f5ead376d9957cddff0
         },
         {
             "timestamp": 1751214589590,
-            "message": "I got this event: {'version': '0', 'id': 'b5eb3e39-d3da-89dc-fde9-11367c90c141', 'detail-type': 'TestEvent', 'source': 'my.custom.source', 'account': '684909421373', 'time': '2025-06-29T16:29:49Z', 'region': 'us-east-1', 'resources': [], 'detail': {'message': 'Hello EventBridge!'}}\n",
+            "message": "I got this event: {'version': '0', 'id': 'b5eb3e39-d3da-89dc-fde9-11367c90c141', 'detail-type': 'TestEvent', 'source': 'my.custom.source', 'account': 'xxxxxxxx', 'time': '2025-06-29T16:29:49Z', 'region': 'us-east-1', 'resources': [], 'detail': {'message': 'Hello EventBridge!'}}\n",
             "ingestionTime": 1751214590799
         },
         {
